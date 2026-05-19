@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio de Actividades · David Zavala</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --negro: #0a0a0a;
+            --negro-claro: #1a1a1a;
+            --negro-card: #141414;
+            --dorado: #d4af37;
+            --dorado-claro: #f4d160;
+            --dorado-oscuro: #a8862b;
+            --texto: #e8e8e8;
+            --texto-tenue: #999;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--negro);
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: var(--texto);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 30px 20px;
+            border-bottom: 1px solid var(--dorado-oscuro);
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--dorado-claro), var(--dorado), var(--dorado-oscuro));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: var(--texto-tenue);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 15px auto;
+            color: var(--dorado);
+            font-size: 1.5rem;
+        }
+
+        .info-card {
+            background: var(--negro-card);
+            padding: 30px 35px;
+            border-radius: 8px;
+            margin-bottom: 35px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--dorado-claro), var(--dorado-oscuro));
+            border-radius: 8px 0 0 8px;
+        }
+
+        .info-card h2 {
+            color: var(--dorado);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+        }
+
+        .info-card p {
+            line-height: 1.8;
+            color: var(--texto);
+            margin-bottom: 5px;
+        }
+
+        .info-card p strong {
+            color: var(--dorado-claro);
+            margin-right: 8px;
+        }
+
+        .parcial {
+            background: var(--negro-card);
+            border-radius: 8px;
+            margin-bottom: 30px;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .parcial:hover {
+            border-color: var(--dorado);
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.15);
+        }
+
+        .parcial-header {
+            background: linear-gradient(90deg, var(--negro-claro), var(--negro-card));
+            color: var(--dorado);
+            padding: 22px 30px;
+            border-bottom: 2px solid var(--dorado);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .parcial-header h2 {
+            font-size: 1.5rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .parcial-numero {
+            background: linear-gradient(135deg, var(--dorado-claro), var(--dorado-oscuro));
+            color: var(--negro);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .actividades {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 15px;
+            padding: 25px 30px;
+        }
+
+        .actividad-link {
+            display: flex;
+            align-items: center;
+            padding: 18px 20px;
+            background: var(--negro-claro);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 6px;
+            text-decoration: none;
+            color: var(--texto);
+            transition: all 0.3s ease;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .actividad-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .actividad-link:hover {
+            border-color: var(--dorado);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.2);
+            color: var(--dorado-claro);
+        }
+
+        .actividad-link:hover::before {
+            left: 100%;
+        }
+
+        .actividad-link .num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--dorado-claro), var(--dorado-oscuro));
+            color: var(--negro);
+            padding: 0 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-right: 12px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 25px;
+            color: var(--texto-tenue);
+            border-top: 1px solid var(--dorado-oscuro);
+        }
+
+        footer a {
+            color: var(--dorado);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--dorado-claro);
+            text-decoration: underline;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            .actividades {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <header>
+            <h1>✦ Portafolio de Actividades ✦</h1>
+            <div class="divider">◆ ◆ ◆</div>
+            <p>Ingeniería en Tecnologías Computacionales</p>
+        </header>
+
+        <div class="info-card">
+            <h2>━ Información del Estudiante</h2>
+            <p><strong>Nombre:</strong> David Zavala</p>
+            <p><strong>Matrícula:</strong> 0000000</p>
+            <p><strong>Materia:</strong> Nombre de la materia</p>
+            <p><strong>Profesor(a):</strong> Nombre del profesor</p>
+            <p><strong>Universidad:</strong> Universidad de Monterrey</p>
+        </div>
+
+        <!-- PRIMER PARCIAL -->
+        <section class="parcial">
+            <div class="parcial-header">
+                <div class="parcial-numero">I</div>
+                <h2>Primer Parcial</h2>
+            </div>
+            <div class="actividades">
+                <a href="parcial1/actividad1/index.html" class="actividad-link">
+                    <span class="num">01</span> Nombre de la actividad
+                </a>
+                <a href="parcial1/actividad2/index.html" class="actividad-link">
+                    <span class="num">02</span> Nombre de la actividad
+                </a>
+                <a href="parcial1/actividad3/index.html" class="actividad-link">
+                    <span class="num">03</span> Nombre de la actividad
+                </a>
+            </div>
+        </section>
+
+        <!-- SEGUNDO PARCIAL -->
+        <section class="parcial">
+            <div class="parcial-header">
+                <div class="parcial-numero">II</div>
+                <h2>Segundo Parcial</h2>
+            </div>
+            <div class="actividades">
+                <a href="parcial2/actividad1/index.html" class="actividad-link">
+                    <span class="num">01</span> Nombre de la actividad
+                </a>
+                <a href="parcial2/actividad2/index.html" class="actividad-link">
+                    <span class="num">02</span> Nombre de la actividad
+                </a>
+                <a href="parcial2/actividad3/index.html" class="actividad-link">
+                    <span class="num">03</span> Nombre de la actividad
+                </a>
+            </div>
+        </section>
+
+        <!-- TERCER PARCIAL -->
+        <section class="parcial">
+            <div class="parcial-header">
+                <div class="parcial-numero">III</div>
+                <h2>Tercer Parcial</h2>
+            </div>
+            <div class="actividades">
+                <a href="parcial3/actividad1/index.html" class="actividad-link">
+                    <span class="num">01</span> Nombre de la actividad
+                </a>
+                <a href="parcial3/actividad2/index.html" class="actividad-link">
+                    <span class="num">02</span> Nombre de la actividad
+                </a>
+                <a href="parcial3/actividad3/index.html" class="actividad-link">
+                    <span class="num">03</span> Nombre de la actividad
+                </a>
+                <a href="parcial3/proyecto-final/index.html" class="actividad-link">
+                    <span class="num">★</span> Proyecto Final
+                </a>
+            </div>
+        </section>
+
+        <footer>
+            <p>⚜ Repositorio en <a href="https://github.com/thedavidzavala" target="_blank">GitHub</a> ⚜</p>
+            <p>© 2026 · David Zavala · Todos los derechos reservados</p>
+        </footer>
+
+    </div>
+</body>
+</html>
